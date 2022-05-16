@@ -80,7 +80,7 @@ namespace VendingMachine.Core.Entities.Classes
         {
             var coinList = CoinReserves.OrderBy(x => x.Value.Value).Select(kvp => kvp.Value).ToList();
 
-            while(collect >= 1)
+            while (collect >= 0.01)
             {
                 var pos = coinList.FindIndex(x => x.Value >= collect);
 
@@ -90,7 +90,7 @@ namespace VendingMachine.Core.Entities.Classes
                     return "NOT ENOUGH CHANGE IN THE MACHINE! PLEASE, CONTACT ADMIN.";
                 }
 
-                if (coinList[pos].Value != collect)
+                if (!(Math.Abs(coinList[pos].Value - collect) < 0.01))
                 {
                     pos--;
                 }
