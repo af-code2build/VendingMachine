@@ -87,7 +87,7 @@ namespace VendingMachine.UI.SubWindows
         {
             var product = VendingMachineHelper.ProductsList.FirstOrDefault(x => x.Id == selectedProductId);
 
-            if (product == null || !VerifyProductTextBoxContent(out int quantity, out double price))
+            if (product == null || VerifyIfProductInfoIsMissing() || !VerifyProductTextBoxContent(out int quantity, out double price))
             {
                 return;
             }
@@ -103,12 +103,12 @@ namespace VendingMachine.UI.SubWindows
             ProductControlPanel.Items.Clear();
             ShowProductsList();
             ProductControlPanel.Refresh();
+            ClearProductTextBoxes();
         }
 
         private void SetProduct_Click(object sender, EventArgs e)
         {
-
-            if (!VerifyProductTextBoxContent(out int quantity, out double value))
+            if (VerifyIfProductInfoIsMissing() || !VerifyProductTextBoxContent(out int quantity, out double value))
             {
                 return;
             }
@@ -126,12 +126,42 @@ namespace VendingMachine.UI.SubWindows
             ProductControlPanel.Items.Clear();
             ShowProductsList();
             ProductControlPanel.Refresh();
-
+            ClearProductTextBoxes();
         }
+
+        private void ClearProductTextBoxes()
+        {
+            ProductNameTextbox.Text = String.Empty;
+            ProductPriceTextbox.Text = String.Empty;
+            ProductQuantityTextbox.Text = String.Empty;
+            ProductImageTextbox.Text = String.Empty;
+        }
+
+
+        private bool VerifyIfProductInfoIsMissing()
+        {
+            return ProductNameTextbox.Text == String.Empty 
+                || ProductPriceTextbox.Text == String.Empty 
+                || ProductQuantityTextbox.Text == String.Empty
+                || ProductImageTextbox.Text == String.Empty;
+        }
+
         private bool VerifyProductTextBoxContent(out int quantity, out double value)
         {
+            var valueNotValid = !Double.TryParse(ProductPriceTextbox.Text, out value);
+            var quantityNotValid = !Int32.TryParse(ProductQuantityTextbox.Text, out quantity);
 
-            if (!Int32.TryParse(ProductQuantityTextbox.Text, out quantity))
+            if (valueNotValid && quantityNotValid)
+            {
+                ProductQuantityTextbox.BackColor = Color.Red;
+                ProductQuantityTextbox.Text = String.Empty;
+                ProductPriceTextbox.BackColor = Color.Red;
+                ProductPriceTextbox.Text = String.Empty;
+                value = 0;
+                return false;
+            }
+
+            if (quantityNotValid)
             {
                 ProductQuantityTextbox.BackColor = Color.Red;
                 ProductQuantityTextbox.Text = String.Empty;
@@ -139,7 +169,7 @@ namespace VendingMachine.UI.SubWindows
                 return false;
             }
 
-            if (!Double.TryParse(ProductPriceTextbox.Text, out value))
+            if (valueNotValid)
             {
                 ProductPriceTextbox.BackColor = Color.Red;
                 ProductPriceTextbox.Text = String.Empty;
@@ -179,7 +209,7 @@ namespace VendingMachine.UI.SubWindows
         {
             var coin = VendingMachineHelper.CoinReserves.FirstOrDefault(x => x.Id == selectedCoinId);
 
-            if (coin == null)
+            if (coin == null || CoinQuantityTextbox.Text == String.Empty)
             {
                 return;
             }
@@ -198,6 +228,7 @@ namespace VendingMachine.UI.SubWindows
             CoinControlPanel.Items.Clear();
             ShowCoinsList();
             CoinControlPanel.Refresh();
+            CoinQuantityTextbox.Text = String.Empty;
         }
 
         private void CoinQuantityTextbox_MouseClick(object sender, MouseEventArgs e)
