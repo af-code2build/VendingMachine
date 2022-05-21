@@ -53,6 +53,7 @@
             this.ProductImageTextbox = new System.Windows.Forms.TextBox();
             this.UpdateCoin = new System.Windows.Forms.Button();
             this.UpdateProduct = new System.Windows.Forms.Button();
+            this.uploadImage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ProductControlPanel
@@ -274,12 +275,26 @@
             this.UpdateProduct.UseVisualStyleBackColor = false;
             this.UpdateProduct.Click += new System.EventHandler(this.UpdateProduct_Click);
             // 
+            // uploadImage
+            // 
+            this.uploadImage.BackColor = System.Drawing.Color.SandyBrown;
+            this.uploadImage.BackgroundImage = global::VendingMachine.UI.Resources.Resource1.upload;
+            this.uploadImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.uploadImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uploadImage.Location = new System.Drawing.Point(355, 150);
+            this.uploadImage.Name = "uploadImage";
+            this.uploadImage.Size = new System.Drawing.Size(26, 27);
+            this.uploadImage.TabIndex = 19;
+            this.uploadImage.UseVisualStyleBackColor = false;
+            this.uploadImage.Click += new System.EventHandler(this.uploadImage_Click);
+            // 
             // AdminControlBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.NavajoWhite;
             this.ClientSize = new System.Drawing.Size(565, 698);
+            this.Controls.Add(this.uploadImage);
             this.Controls.Add(this.UpdateProduct);
             this.Controls.Add(this.UpdateCoin);
             this.Controls.Add(this.ProductImageTextbox);
@@ -333,5 +348,6 @@
         private System.Windows.Forms.TextBox ProductImageTextbox;
         private System.Windows.Forms.Button UpdateCoin;
         private System.Windows.Forms.Button UpdateProduct;
+        private System.Windows.Forms.Button uploadImage;
     }
 }

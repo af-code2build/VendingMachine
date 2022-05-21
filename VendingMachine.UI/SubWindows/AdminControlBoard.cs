@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -81,6 +82,35 @@ namespace VendingMachine.UI.SubWindows
             ProductPriceTextbox.Text = product.Price.ToString("0.00");
             ProductQuantityTextbox.Text = product.Quantity.ToString();
             ProductImageTextbox.Text = product.Picture;
+        }
+
+        private void uploadImage_Click(object sender, EventArgs e)
+        {
+            var imageLocation = string.Empty;
+            var fileName = string.Empty;
+
+            try
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+
+                dialog.Filter = "jpg files(*.jpg)|*.jpg| PNG files(*.png)|*.png| All files(*.*)|*.*";
+
+                if (dialog.ShowDialog()== System.Windows.Forms.DialogResult.OK)
+                {
+                    imageLocation = dialog.FileName;
+                    fileName = imageLocation.Split('\\').Last();
+                    ProductImageTextbox.Text = fileName;
+
+                    if (File.Exists(imageLocation))
+                    {
+                        File.Move(imageLocation, @"..\..\..\Resources\" + fileName);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error: an error ocurred while uploading image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void UpdateProduct_Click(object sender, EventArgs e)
