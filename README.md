@@ -38,4 +38,7 @@ After clicking the lock icon, the user will have access to the admin control pan
 <br />
 Simply click one of the items on the list to update one of them.
 
+## How to Build
+This application requires at least Visual Studio 2019 V16.6 and .NET 5.0 SDK to build on Windows.
+
 
