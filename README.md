@@ -1,5 +1,6 @@
 # Vending Machine
-#### A quick Windows Forms app in Visual Studio simulating a Vending Machine, keeping track of the products and coins that it contains with a portable SQLite database.  
+
+A quick Windows Forms app in Visual Studio simulating a Vending Machine, keeping track of the products and coins that it contains with a portable SQLite database.  
 
 ## About The Project
 
