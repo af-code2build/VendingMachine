@@ -1,5 +1,5 @@
 # Vending Machine
-#### A quick Windows Forms app in Visual Studio in C#, simulating a Vending Machine and keeping track of the products and coins that it contains with a portable SQLite database.  
+#### A quick Windows Forms app in Visual Studio simulating a Vending Machine, keeping track of the products and coins that it contains with a portable SQLite database.  
 
 ## About The Project
 
@@ -32,7 +32,7 @@ After clicking the lock icon, the user will have access to the admin control pan
 <br />
 <br />
 <kbd>
-  <img src="https://user-images.githubusercontent.com/68421082/168546775-65c81784-5198-4d99-9170-2adc5b91c7ac.png" height="500" width="400" >
+  <img src="https://user-images.githubusercontent.com/68421082/169643719-eb1c2b5f-d29e-4d4b-87b8-e2be2b1e2836.png" height="500" width="400" >
 </kbd>
 <br />
 <br />
